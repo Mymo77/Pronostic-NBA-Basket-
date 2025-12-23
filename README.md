@@ -74,7 +74,10 @@ Traditionnellement, le taux de surprises en NBA se situe entre 28 et 32 %, ce 
 ## Résultats
 - **Gaussian Naive-Bayes (PCA)** : 63,5 % de précision  
 - **Random Forest (Feature Selection)** : 62,8 %  
-- **Régression Logistique** : 62,1 %  
+- **Régression Logistique** : 62,1 %
+
+<img width="251" height="262" alt="Capture d’écran 2025-12-23 051517" src="https://github.com/user-attachments/assets/fab42d43-beff-4488-a5e2-cdc52f25af86" />
+
 
 **Observations** :  
 - Les variables les plus importantes : efficacité au tir (eFG%, TS%), différentiel de rebonds (TRB%), points marqués (PTS), statistiques défensives.  
