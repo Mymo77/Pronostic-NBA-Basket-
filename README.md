@@ -73,6 +73,8 @@ draft
 Mon hypothèse était que les modèles présenteraient moins d'erreurs en seconde partie de saison, du fait de la diminution des changements d'effectifs. En NBA, une fois la date limite des transferts passée, les effectifs restent globalement stables, hormis les blessures et quelques signatures ponctuelles. En revanche, le début de saison est marqué par une grande incertitude, car c'est durant l'intersaison que l'on observe la majorité des changements d'effectifs. De plus, comme les données agrégées par équipe ne sont pas réinitialisées d'une saison à l'autre, les modèles utilisent des données reportées de la fin de la saison précédente, même si les effectifs peuvent être totalement différents. J'ai analysé les statistiques d'erreur en calculant l'erreur moyenne sur l'ensemble des saisons, puis en répartissant le nombre d'erreurs par trimestre. Ce calcul a été effectué à partir des données agrégées sur 10 matchs, prenant en compte quatre facteurs.
 
 
+<img width="1324" height="873" alt="model_error_per_season_quarter" src="https://github.com/user-attachments/assets/f7458dd0-e3b0-444b-910a-2032fa6f1761" />
+
 ---
 
 ## Résultats
