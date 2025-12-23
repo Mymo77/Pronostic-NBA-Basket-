@@ -68,10 +68,12 @@ Traditionnellement, le taux de surprises en NBA se situe entre 28 et 32 %, ce 
 - L’analyse de l’erreur moyenne par saison et par quart de saison a montré une précision moyenne d’environ 60 %.  
 
 #### Distribution des erreurs par quart de saison
-![Distribution des erreurs](images/model_error_per_season_quarter.png)
+<img width="1324" height="873" alt="model_error_per_season_quarter" src="https://github.com/user-attachments/assets/d0ad58ba-eeff-4793-b62a-c13549161aaa" />
 
 #### Erreur moyenne par match
-![Erreur moyenne par match](images/average_error_per_game.png)
+<img width="1320" height="853" alt="average_error_per_game" src="https://github.com/user-attachments/assets/d1c9da92-2e73-4836-b1c5-f2d6f51acb24" />
+
+
 
 ---
 
@@ -84,7 +86,8 @@ Traditionnellement, le taux de surprises en NBA se situe entre 28 et 32 %, ce 
 - Les variables les plus importantes : efficacité au tir (eFG%, TS%), différentiel de rebonds (TRB%), points marqués (PTS), statistiques défensives.  
 - Graphiques recommandés : matrice de confusion, importance des variables, distribution des erreurs par quart de saison.  
 
-![Importance des variables](images/feat_imp_RF_best.png)
+<img width="863" height="545" alt="feat_imp_RF_best" src="https://github.com/user-attachments/assets/31372992-158e-4097-9492-622b647571c0" />
+
 
 ---
 
