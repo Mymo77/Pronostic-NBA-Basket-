@@ -10,12 +10,6 @@ Pour atteindre cet objectif, j'ai :
 
 ---
 
-## Partenaire / Stakeholder
-Le projet a été réalisé pour **Stat-Ball**, un site d’actualités sportives et de divertissement.  
-La plateforme souhaite lancer des compétitions de pronostics et a besoin d’un **modèle interne robuste** servant de référence (*benchmark*) pour les utilisateurs.
-
----
-
 ## Résumé du Projet
 - Le meilleur modèle obtenu est un **Gaussian Naive-Bayes (GNB)** avec réduction de dimensionnalité via **PCA**.  
 - Entraîné sur les statistiques moyennes des équipes sur les 20 derniers matchs.  
