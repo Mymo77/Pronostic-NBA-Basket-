@@ -94,7 +94,26 @@ Après avoir testé les quatre jeux de données factoriels, qui ont atteint une 
 
 **Observations** :  
 - Les variables les plus importantes : efficacité au tir, différentiel de rebonds, statistiques défensives.  
-- Graphiques recommandés : matrice de confusion, importance des variables, distribution des erreurs par quart de saison.  
+- Graphiques recommandés : matrice de confusion, importance des variables, distribution des erreurs par quart de saison.
+
+## Conclusion
+
+Ce projet visait à mieux comprendre les dynamiques de victoire dans la NBA en s’appuyant sur les performances statistiques passées des équipes. En modélisant l’issue d’un match via différentes techniques de machine learning (régression logistique, SVM, random forest, Naïve Bayes, etc.), notre objectif était d’identifier les facteurs les plus déterminants dans la construction d’une victoire.
+
+Parmi les différents modèles testés, c’est le Naïve Bayes avec réduction de dimension par ACP (GNB_PCA) qui a obtenu les meilleurs résultats, atteignant une précision de 63,5 %. Cela constitue une amélioration significative par rapport à la baseline de 57,2 %, basée sur l’avantage à domicile. Ce résultat montre que les modèles d’apprentissage automatique sont capables de capter des dynamiques de performance au-delà des simples effets contextuels.
+
+Nos analyses révèlent que certains indicateurs statistiques sont particulièrement liés à la victoire, notamment :
+
+eFG% (effective field goal percentage) et TS% (true shooting percentage) : deux mesures clés de l’efficacité offensive, qui intègrent la valeur des tirs à trois points et l’efficacité aux lancers francs.
+
+TRB% (taux de rebonds totaux), FG% (pourcentage de réussite aux tirs) et le nombre de points marqués (PTS), qui traduisent une maîtrise du rythme de jeu et une capacité à concrétiser les possessions.
+
+À l’inverse, des statistiques plus traditionnelles comme le nombre de passes décisives (AST), les interceptions (STL) ou encore les fautes ont un poids plus marginal dans la prédiction.
+
+Ces résultats nous permettent de mieux cerner ce qui fait la différence sur le terrain : l’efficacité offensive et le contrôle du rebond apparaissent comme les leviers essentiels de la performance. Cela peut en partie expliquer pourquoi certaines équipes réussissent à maintenir un haut niveau de succès sur plusieurs saisons : elles maîtrisent ces fondamentaux de manière plus stable, indépendamment des contraintes imposées par la ligue. La domination résulte donc d’une optimisation constante des éléments les plus décisifs du jeu décrit plus haut.
+
+ <img width="863" height="545" alt="feat_imp_RF_best" src="https://github.com/user-attachments/assets/9a34546a-4815-4e48-88b2-e16c66b3b312" />
+
 
 ---
 
