@@ -28,8 +28,9 @@ La plateforme souhaite lancer des compétitions de pronostics et a besoin d’un
 1. [Aperçu des Données](#aperçu-des-données)  
 2. [Modélisation](#modélisation)  
 3. [Résultats](#résultats)  
-4. [Prochaines Étapes](#prochaines-étapes)  
-5. [Technologies utilisées](#technologies-utilisées)  
+4. [Conclusion](#conclusion)  
+5. [Prochaines Étapes](#prochaines-étapes)  
+6. [Technologies utilisées](#technologies-utilisées)  
 
 ---
 
@@ -57,33 +58,20 @@ Algorithmes testés :
 - Support Vector Classifier (SVC)  
 - Réseaux de Neurones (NN)  
 
-**Modèle de référence (Baseline)** : prédire systématiquement la victoire de l’équipe à domicile (~57,2 % de victoires à domicile). 
-Traditionnellement, le taux de surprises en NBA se situe entre 28 et 32 ​​%, ce qui signifie que l'équipe favorite l'emporte dans 68 à 72 % des cas. De ce fait, il est très difficile de créer un modèle dont la précision dépasse cette fourchette. Compte tenu des limitations des données utilisées, j'espère atteindre une précision proche du seuil de 68 %.
+**Modèle de référence (Baseline)** : prédire systématiquement la victoire de l’équipe à domicile (~57,2 % de victoires à domicile).  
+
+Traditionnellement, le taux de surprises en NBA se situe entre 28 et 32 %, ce qui signifie que l'équipe favorite l'emporte dans 68 à 72 % des cas. Compte tenu des limitations des données utilisées, l'objectif était d'approcher cette précision.
 
 ### Analyse des erreurs
-J'ai commencé par tester les données à quatre facteurs en utilisant les moyennes des 10, 20 et 30 derniers matchs. Les données agrégées sur 10 matchs ont donné des résultats inférieurs aux attentes, tandis que celles sur 20 et 30 matchs présentaient une précision moyenne similaire pour tous les modèles. Finalement, j'ai décidé de me concentrer sur l'agrégation sur 20 matchs lors des tests sur l'ensemble des données, incluant toutes les statistiques de feuille de match.
+- Les modèles présentent plus d’erreurs en début de saison à cause des changements d’effectifs : blessures, transferts, agents libres, draft.  
+- Les erreurs sont moins fréquentes en seconde partie de saison, quand les équipes sont stables.  
+- L’analyse de l’erreur moyenne par saison et par quart de saison a montré une précision moyenne d’environ 60 %.  
 
-J'ai également évalué l'erreur du modèle plus en détail. L'utilisation de données agrégées par équipe m'indique que les modèles ne peuvent pas intégrer rapidement les changements d'effectif, principalement dus à quelques facteurs :
+#### Distribution des erreurs par quart de saison
+![Distribution des erreurs](images/model_error_per_season_quarter.png)
 
-blessures,
-transferts,
-agents libres,
-draft
-
-Mon hypothèse était que les modèles présenteraient moins d'erreurs en seconde partie de saison, du fait de la diminution des changements d'effectifs. En NBA, une fois la date limite des transferts passée, les effectifs restent globalement stables, hormis les blessures et quelques signatures ponctuelles. En revanche, le début de saison est marqué par une grande incertitude, car c'est durant l'intersaison que l'on observe la majorité des changements d'effectifs. De plus, comme les données agrégées par équipe ne sont pas réinitialisées d'une saison à l'autre, les modèles utilisent des données reportées de la fin de la saison précédente, même si les effectifs peuvent être totalement différents. J'ai analysé les statistiques d'erreur en calculant l'erreur moyenne sur l'ensemble des saisons, puis en répartissant le nombre d'erreurs par trimestre. Ce calcul a été effectué à partir des données agrégées sur 10 matchs, prenant en compte quatre facteurs.
-
-
-<img width="1324" height="873" alt="model_error_per_season_quarter" src="https://github.com/user-attachments/assets/f7458dd0-e3b0-444b-910a-2032fa6f1761" />
-
-Il est clair que les modèles se comportent de manière très similaire, non seulement en termes de précision globale, mais aussi en ce qui concerne la distribution des erreurs au cours d'une saison. Mon hypothèse selon laquelle la seconde moitié de chaque saison serait moins sujette aux erreurs semble plausible, mais la similarité entre les modèles suggère également que les données ne contiennent pas suffisamment d'informations pour les différencier.
-
-J'ai également examiné l'erreur moyenne du modèle par saison afin de déceler d'éventuelles valeurs aberrantes. Étant donné que certaines saisons comptaient moins de matchs que d'autres, j'ai ajusté les résultats pour qu'ils représentent l'erreur moyenne par match pour chaque saison.
-
-<img width="1320" height="853" alt="average_error_per_game" src="https://github.com/user-attachments/assets/70b6729f-5219-4026-8652-7dd9de1194a1" />
-
-Chaque saison a enregistré environ 0,35 à 0,40 erreur par match, ce qui signifie que pour 10 matchs par saison, les modèles ont commis en moyenne 3,5 à 4 erreurs. Cela correspond à une précision moyenne des modèles d'environ 60 %.
-
-Après avoir testé les quatre jeux de données factoriels, qui ont atteint une précision moyenne d'environ 61 à 62 %, j'ai également utilisé les jeux de données PCA et les jeux de données complets. Une analyse détaillée des résultats de modélisation est disponible dans la section « Résultats », mais aucun des modèles n'a atteint l'objectif de 68 %. Un modèle d'ensemble avait également peu de chances d'atteindre cet objectif, car les modèles individuels présentaient des performances très similaires.
+#### Erreur moyenne par match
+![Erreur moyenne par match](images/average_error_per_game.png)
 
 ---
 
@@ -93,34 +81,25 @@ Après avoir testé les quatre jeux de données factoriels, qui ont atteint une 
 - **Régression Logistique** : 62,1 %  
 
 **Observations** :  
-- Les variables les plus importantes : efficacité au tir, différentiel de rebonds, statistiques défensives.  
-- Graphiques recommandés : matrice de confusion, importance des variables, distribution des erreurs par quart de saison.
+- Les variables les plus importantes : efficacité au tir (eFG%, TS%), différentiel de rebonds (TRB%), points marqués (PTS), statistiques défensives.  
+- Graphiques recommandés : matrice de confusion, importance des variables, distribution des erreurs par quart de saison.  
+
+![Importance des variables](images/feat_imp_RF_best.png)
+
+---
 
 ## Conclusion
-
-Ce projet visait à mieux comprendre les dynamiques de victoire dans la NBA en s’appuyant sur les performances statistiques passées des équipes. En modélisant l’issue d’un match via différentes techniques de machine learning (régression logistique, SVM, random forest, Naïve Bayes, etc.), notre objectif était d’identifier les facteurs les plus déterminants dans la construction d’une victoire.
-
-Parmi les différents modèles testés, c’est le Naïve Bayes avec réduction de dimension par ACP (GNB_PCA) qui a obtenu les meilleurs résultats, atteignant une précision de 63,5 %. Cela constitue une amélioration significative par rapport à la baseline de 57,2 %, basée sur l’avantage à domicile. Ce résultat montre que les modèles d’apprentissage automatique sont capables de capter des dynamiques de performance au-delà des simples effets contextuels.
-
-Nos analyses révèlent que certains indicateurs statistiques sont particulièrement liés à la victoire, notamment :
-
-eFG% (effective field goal percentage) et TS% (true shooting percentage) : deux mesures clés de l’efficacité offensive, qui intègrent la valeur des tirs à trois points et l’efficacité aux lancers francs.
-
-TRB% (taux de rebonds totaux), FG% (pourcentage de réussite aux tirs) et le nombre de points marqués (PTS), qui traduisent une maîtrise du rythme de jeu et une capacité à concrétiser les possessions.
-
-À l’inverse, des statistiques plus traditionnelles comme le nombre de passes décisives (AST), les interceptions (STL) ou encore les fautes ont un poids plus marginal dans la prédiction.
-
-Ces résultats nous permettent de mieux cerner ce qui fait la différence sur le terrain : l’efficacité offensive et le contrôle du rebond apparaissent comme les leviers essentiels de la performance. Cela peut en partie expliquer pourquoi certaines équipes réussissent à maintenir un haut niveau de succès sur plusieurs saisons : elles maîtrisent ces fondamentaux de manière plus stable, indépendamment des contraintes imposées par la ligue. La domination résulte donc d’une optimisation constante des éléments les plus décisifs du jeu décrit plus haut.
-
- <img width="863" height="545" alt="feat_imp_RF_best" src="https://github.com/user-attachments/assets/9a34546a-4815-4e48-88b2-e16c66b3b312" />
-
+Ce projet a permis de mieux comprendre les dynamiques de victoire en NBA à partir des performances passées des équipes.  
+- Le **GNB avec PCA** a été le modèle le plus performant (63,5 %), supérieur à la baseline de 57,2 %.  
+- Les indicateurs les plus déterminants sont l’efficacité offensive et le contrôle du rebond.  
+- Ces résultats montrent que le machine learning peut capturer des dynamiques au-delà des simples effets contextuels.
 
 ---
 
 ## Prochaines Étapes
 - **Agrégation par joueur** : intégrer les stats individuelles pour ajuster la force d’une équipe.  
-- **Ingénierie de caractéristiques avancées** : metrics comme PIE (Player Impact Estimate) ou BPM (Box Plus/Minus).  
-- **Modèles d’ensemble** : combiner plusieurs modèles (Boosting/Stacking) pour améliorer la précision.  
+- **Ingénierie de caractéristiques avancées** : metrics comme PIE ou BPM.  
+- **Modèles d’ensemble** : combiner plusieurs modèles (Boosting/Stacking).  
 - **Données contextuelles** : fatigue, matchs consécutifs, distances de déplacement.  
 
 ---
