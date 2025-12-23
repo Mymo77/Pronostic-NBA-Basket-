@@ -75,6 +75,16 @@ Mon hypothèse était que les modèles présenteraient moins d'erreurs en second
 
 <img width="1324" height="873" alt="model_error_per_season_quarter" src="https://github.com/user-attachments/assets/f7458dd0-e3b0-444b-910a-2032fa6f1761" />
 
+Il est clair que les modèles se comportent de manière très similaire, non seulement en termes de précision globale, mais aussi en ce qui concerne la distribution des erreurs au cours d'une saison. Mon hypothèse selon laquelle la seconde moitié de chaque saison serait moins sujette aux erreurs semble plausible, mais la similarité entre les modèles suggère également que les données ne contiennent pas suffisamment d'informations pour les différencier.
+
+J'ai également examiné l'erreur moyenne du modèle par saison afin de déceler d'éventuelles valeurs aberrantes. Étant donné que certaines saisons comptaient moins de matchs que d'autres, j'ai ajusté les résultats pour qu'ils représentent l'erreur moyenne par match pour chaque saison.
+
+<img width="1320" height="853" alt="average_error_per_game" src="https://github.com/user-attachments/assets/70b6729f-5219-4026-8652-7dd9de1194a1" />
+
+Chaque saison a enregistré environ 0,35 à 0,40 erreur par match, ce qui signifie que pour 10 matchs par saison, les modèles ont commis en moyenne 3,5 à 4 erreurs. Cela correspond à une précision moyenne des modèles d'environ 60 %.
+
+Après avoir testé les quatre jeux de données factoriels, qui ont atteint une précision moyenne d'environ 61 à 62 %, j'ai également utilisé les jeux de données PCA et les jeux de données complets. Une analyse détaillée des résultats de modélisation est disponible dans la section « Résultats », mais aucun des modèles n'a atteint l'objectif de 68 %. Un modèle d'ensemble avait également peu de chances d'atteindre cet objectif, car les modèles individuels présentaient des performances très similaires.
+
 ---
 
 ## Résultats
