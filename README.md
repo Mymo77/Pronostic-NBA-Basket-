@@ -57,11 +57,21 @@ Algorithmes testés :
 - Support Vector Classifier (SVC)  
 - Réseaux de Neurones (NN)  
 
-**Modèle de référence (Baseline)** : prédire systématiquement la victoire de l’équipe à domicile (~57,2 % de victoires à domicile).  
+**Modèle de référence (Baseline)** : prédire systématiquement la victoire de l’équipe à domicile (~57,2 % de victoires à domicile). 
+Traditionnellement, le taux de surprises en NBA se situe entre 28 et 32 ​​%, ce qui signifie que l'équipe favorite l'emporte dans 68 à 72 % des cas. De ce fait, il est très difficile de créer un modèle dont la précision dépasse cette fourchette. Compte tenu des limitations des données utilisées, j'espère atteindre une précision proche du seuil de 68 %.
 
 ### Analyse des erreurs
-- Les erreurs sont plus fréquentes **en début de saison** (changements d’effectifs : transferts, draft).  
-- Le modèle GNB réduit les faux positifs et détecte mieux les victoires à l’extérieur.  
+J'ai commencé par tester les données à quatre facteurs en utilisant les moyennes des 10, 20 et 30 derniers matchs. Les données agrégées sur 10 matchs ont donné des résultats inférieurs aux attentes, tandis que celles sur 20 et 30 matchs présentaient une précision moyenne similaire pour tous les modèles. Finalement, j'ai décidé de me concentrer sur l'agrégation sur 20 matchs lors des tests sur l'ensemble des données, incluant toutes les statistiques de feuille de match.
+
+J'ai également évalué l'erreur du modèle plus en détail. L'utilisation de données agrégées par équipe m'indique que les modèles ne peuvent pas intégrer rapidement les changements d'effectif, principalement dus à quelques facteurs :
+
+blessures
+transferts
+agents libres
+draft
+
+Mon hypothèse était que les modèles présenteraient moins d'erreurs en seconde partie de saison, du fait de la diminution des changements d'effectifs. En NBA, une fois la date limite des transferts passée, les effectifs restent globalement stables, hormis les blessures et quelques signatures ponctuelles. En revanche, le début de saison est marqué par une grande incertitude, car c'est durant l'intersaison que l'on observe la majorité des changements d'effectifs. De plus, comme les données agrégées par équipe ne sont pas réinitialisées d'une saison à l'autre, les modèles utilisent des données reportées de la fin de la saison précédente, même si les effectifs peuvent être totalement différents. J'ai analysé les statistiques d'erreur en calculant l'erreur moyenne sur l'ensemble des saisons, puis en répartissant le nombre d'erreurs par trimestre. Ce calcul a été effectué à partir des données agrégées sur 10 matchs, prenant en compte quatre facteurs.
+
 
 ---
 
